@@ -2,7 +2,7 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader @addTodo="addTodo" />
+        <MyHeader :addTodo="addTodo" />
         <MyList
           :todos="todos"
           :checkTodo="checkTodo"
@@ -10,8 +10,8 @@
         />
         <MyFooter
           :todos="todos"
-          @checkAllTodo="checkAllTodo"
-          @clearAllTodo="clearAllTodo"
+          :checkAllTodo="checkAllTodo"
+          :clearAllTodo="clearAllTodo"
         />
       </div>
     </div>
@@ -67,16 +67,6 @@ export default {
       this.todos = this.todos.filter((todo) => {
         return !todo.done;
       });
-    },
-  },
-  watch: {
-    // 监视todos
-    todos: {
-      // 开启深度监视，可监听内部属性值变化
-      deep: true,
-      handler(val) {
-        localStorage.setItem("todos", JSON.stringify(val)) || [];
-      },
     },
   },
 };
